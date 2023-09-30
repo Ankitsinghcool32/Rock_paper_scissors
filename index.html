@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Function to generate computer's choice
+function computerChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+}
+
+// Function to determine the winner of a round
+function determineWinner(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+        return "It's a tie!";
+    } else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+    ) {
+        return "You win!";
+    } else {
+        return "Computer wins!";
+    }
+}
+
+// Function to play the game for a given number of rounds
+function playGame(rounds) {
+    for (let i = 1; i <= rounds; i++) {
+        console.log(`Round ${i}:`);
+        const playerChoice = prompt("Enter your choice (rock/paper/scissors):").toLowerCase();
+        if (!["rock", "paper", "scissors"].includes(playerChoice)) {
+            console.log("Invalid choice. Please choose rock, paper, or scissors.");
+            i--; // Decrement i to replay the current round
+            continue;
+        }
+        
+        const compChoice = computerChoice();
+        console.log(`Computer chose: ${compChoice}`);
+        
+        const result = determineWinner(playerChoice, compChoice);
+        console.log(result);
+        console.log("-------------------");
+    }
+}
+
+// Start the game with 5 rounds
+playGame(5);
+
+    </script>
+</body>
+</html>
